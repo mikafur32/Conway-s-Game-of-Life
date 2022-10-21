@@ -1,9 +1,13 @@
 import Sison.UI.Input;
 import java.io.IOException;
+import java.io.*;
 
 public class main
 {
-    public static void main(String[] args) throws InterruptedException
+    private static void clearScreen() throws IOException, InterruptedException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }
+    public static void main(String[] args) throws InterruptedException, IOException
     {
         World world = null;
         world = getWorld(world);
@@ -15,10 +19,10 @@ public class main
             check = world;
             world = world.getNextGen();
 
-            System.out.printf("\u001B[%dA", world.getHeight()); //
-            Thread.sleep(75);
+            clearScreen();
+            //Thread.sleep();
         }
-        System.out.printf("\u001B[%dB",world.getHeight());
+        clearScreen();
     }
 
     private static World getWorld(World world)
